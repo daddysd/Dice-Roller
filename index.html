@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- <h1> D&D Dice Roller</h1> -->
+            <!-- <p>Roll your fate with stunning 3D animations</p> -->
+        </header>
+
+        <div class="dice-grid">
+            <div class="dice-card" data-dice="d4">
+                <h2>D4</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d4"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D4</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+
+            <div class="dice-card" data-dice="d6">
+                <h2>D6</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d6"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D6</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+
+            <div class="dice-card" data-dice="d8">
+                <h2>D8</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d8"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D8</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+
+            <div class="dice-card" data-dice="d10">
+                <h2>D10</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d10"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D10</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+
+            <div class="dice-card" data-dice="d12">
+                <h2>D12</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d12"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D12</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+
+            <div class="dice-card" data-dice="d20">
+                <h2>D20</h2>
+                <canvas class="dice-canvas" id="diceCanvas-d20"></canvas>
+                <div class="result-display">
+                    <div class="result-value">0</div>
+                </div>
+                <button class="roll-btn"> Roll D20</button>
+                <div class="card-stats">
+                    <p>Last: <span class="last-roll">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
