@@ -360,7 +360,7 @@ function displayResults(results, diceList) {
         }
     });
 
-    message += `\n💰 TOPLAM: ${total}`;
+    message += `\n TOPLAM: ${total}`;
     alert(message);
 }
 
@@ -386,4 +386,5 @@ function showRollResults(results, diceTypes) {
     totalResult.textContent = `  TOPLAM: ${total}`;
     modal.classList.add('show');
 }
+
 
