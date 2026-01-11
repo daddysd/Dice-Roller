@@ -383,6 +383,7 @@ function showRollResults(results, diceTypes) {
         }
     });
 
-    totalResult.textContent = `🎲 TOPLAM: ${total}`;
+    totalResult.textContent = `TOPLAM: ${total}`;
     modal.classList.add('show');
 }
+
