@@ -304,7 +304,7 @@ function handleMultiRoll() {
     const checkboxes = document.querySelectorAll('.dice-select:checked');
     
     if (checkboxes.length === 0) {
-        alert('🎲 Lütfen en az bir zar seç!');
+        alert('  Lütfen en az bir zar seç!');
         return;
     }
 
@@ -350,7 +350,7 @@ function handleMultiRoll() {
 
 function displayResults(results, diceList) {
     let total = 0;
-    let message = '🎲 SONUÇLAR:\n\n';
+    let message = '  SONUÇLAR:\n\n';
 
     diceList.forEach(dice => {
         const value = results[dice];
@@ -383,6 +383,7 @@ function showRollResults(results, diceTypes) {
         }
     });
 
-    totalResult.textContent = `🎲 TOPLAM: ${total}`;
+    totalResult.textContent = `  TOPLAM: ${total}`;
     modal.classList.add('show');
 }
+
