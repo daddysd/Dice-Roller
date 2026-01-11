@@ -208,12 +208,19 @@ class DiceRoller {
 
     updateDisplay(card, result) {
         const resultValue = card.querySelector('.result-value');
-        resultValue.textContent = result;
+        if (resultValue) {
+            resultValue.textContent = result;
+        }
 
         this.stats.rolls.push(result);
         this.stats.total++;
 
-        card.querySelector('.last-roll').textContent = result;
+        const lastRoll = card.querySelector('.last-roll');
+        if (lastRoll) {
+            lastRoll.textContent = result;
+        } else {
+            console.warn(`lastRoll element bulunamadı. Card:`, card);
+        }
 
         this.saveStats();
     }
@@ -261,6 +268,7 @@ function initApp() {
     });
 
     setupIndividualRolls();
+    setupMultiRoll();
 }
 
 function setupIndividualRolls() {
@@ -283,6 +291,77 @@ function setupIndividualRolls() {
             rollBtn.disabled = false;
         });
     });
+}
+
+function setupMultiRoll() {
+    const multiRollBtn = document.getElementById('multiRollBtn');
+    if (multiRollBtn) {
+        multiRollBtn.addEventListener('click', handleMultiRoll);
+    }
+}
+
+function handleMultiRoll() {
+    const checkboxes = document.querySelectorAll('.dice-select:checked');
+    
+    if (checkboxes.length === 0) {
+        alert('🎲 Lütfen en az bir zar seç!');
+        return;
+    }
+
+    const multiRollBtn = document.getElementById('multiRollBtn');
+    multiRollBtn.disabled = true;
+
+    const selectedDice = Array.from(checkboxes).map(cb => cb.dataset.dice);
+    const results = {};
+    let completedCount = 0;
+
+    selectedDice.forEach(diceType => {
+        const card = document.querySelector(`.dice-card[data-dice="${diceType}"]`);
+        if (!card) {
+            console.error(`Zar kartı bulunamadı: ${diceType}`);
+            completedCount++;
+            return;
+        }
+        
+        const roller = diceRollers[diceType];
+
+        roller.rollDice().then(value => {
+            console.log(`${diceType} atıldı: ${value}`);
+            results[diceType] = value;
+            if (value !== null && card) {
+                roller.updateDisplay(card, value);
+            }
+            completedCount++;
+
+            if (completedCount === selectedDice.length) {
+                console.log('Tüm zarlar bitti. Sonuçlar:', results);
+                setTimeout(() => {
+                    displayResults(results, selectedDice);
+                    checkboxes.forEach(cb => cb.checked = false);
+                    multiRollBtn.disabled = false;
+                }, 600);
+            }
+        }).catch(error => {
+            console.error(`${diceType} hatası:`, error);
+            completedCount++;
+        });
+    });
+}
+
+function displayResults(results, diceList) {
+    let total = 0;
+    let message = '🎲 SONUÇLAR:\n\n';
+
+    diceList.forEach(dice => {
+        const value = results[dice];
+        if (value !== undefined && value !== null) {
+            total += value;
+            message += `${dice.toUpperCase()}: ${value}\n`;
+        }
+    });
+
+    message += `\n💰 TOPLAM: ${total}`;
+    alert(message);
 }
 
 function showRollResults(results, diceTypes) {
